@@ -12,11 +12,16 @@ export default function App() {
   const [historyId, setHistoryId] = useState(1)
 
   const handleDelete = (item) => {
-    const newArray = history.filter(( curr,idx) => {
+    const newArray = history.filter(( curr) => {
       if(item.id !== curr.id){
         return curr
       }
     })
+    if(item.category === "Income"){
+      setIncome(prev => prev - item.amount)
+    } else if (item.category === "Expense"){
+      setExpense(prev => prev - item.amount)
+    }
     setHistory(newArray)
   }
 
